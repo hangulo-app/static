@@ -7,7 +7,8 @@ var gameStarted = false,
     gameInProgress = false,
     blocks = [],
     currentBlock = '',
-    blockIndex = 0;
+    blockIndex = 0,
+    blinkInterval;
 
 /*
 * BEGIN SPEECH RECOGNITION
@@ -100,6 +101,7 @@ function startGame() {
     gameCompleted = false;
     blockIndex = 0;
 
+    startBlinking();
     setCurrentBlock(blockIndex);
   };
 
@@ -112,9 +114,26 @@ function endGame() {
     gameCompleted = true;
     blockIndex = 0;
 
+    stopBlinking(blinkInterval);
     resetBlocks();
   };
 
 function isMatch(block, guess) {
   return block == guess;
 };
+
+function blink() {
+  $recordingDot = $('#recording-dot');
+
+  $recordingDot.fadeOut(500);
+  $recordingDot.fadeIn(500);
+};
+
+function startBlinking() {
+  $('#recording-dot').attr('hidden', false);
+  blinkInterval = setInterval(blink, 1000);
+}
+function stopBlinking(intervalId) {
+  clearInterval(intervalId);
+  $('#recording-dot').attr('hidden', true);
+}

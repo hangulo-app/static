@@ -1,8 +1,22 @@
+<div class="uk-card uk-card-body">
+  <h3 class="uk-card-title">How to Use:</h3>
+  <p>First, click 'Play Demo.' This will ask to access your microphone, which is used to record your attempts for reading each block of text.</p>
+  <p>Once the game begins, you'll see the first block/syllable become emphasized. That is your cue to read aloud the corresponding block. Soon after, you should see your response below the block.</p>
+  <p>If your response matches, the next block becomes activated, and so on, until the end is reached.</p>
+</div>
+
 <div id='beginner-demo' class='uk-margin-smaall'>
-  <div class="uk-button-group">
-    <button id='playButton' class="uk-button uk-button-danger">
-      <span uk-icon="icon: play"></span> Play Demo
-    </button>
+  <div class="uk-clearfix" uk-height-match>
+    <div class="uk-float-right">
+      <svg id='recording-dot' height="30" width="30" hidden>
+        <circle cx="10" cy="20" r="5" stroke="red" stroke-width="5" fill="red" />
+      </svg>
+    </div>
+    <div class="uk-float-left">
+      <button id='playButton' class="uk-button uk-button-danger">
+        <span uk-icon="icon: play"></span> Play Demo
+      </button>
+    </div>
   </div>
 
   <div class='uk-section uk-section-primary uk-preserve-color'>
