@@ -43,7 +43,7 @@ var Demo = {
 */
 
 // Unsuccessful result handlers
-  recognition.onnomatch = function(event) { alert(event) };
+  recognition.onnomatch = function(event) { console.log(event) };
   recognition.onerror = function(event) { console.log(event) };
 //
 
@@ -69,11 +69,12 @@ console.log("charAt(result.length-1) = ", result.charAt(result.length-1));
 
     if (result.length-1 > 0 && result.length > block.length) {
       if (block == result.charAt(0)) {
+
+// IMPLEMENT isMultiMatchForward
+
         alert(result);
       }
       else if (block == result.charAt(result.length-1)) {
-
-console.log("isMultiMatchBackward: ", isMultiMatchBackward(block, result));
 
         if (isMultiMatchBackward(block, result)) {
 
@@ -148,8 +149,6 @@ function isMultiMatchBackward(block, guess) {
 
   for (var i=refIndex;i>-1;i--){ //backward
     multiCharBlockBackward = blocks[i] + multiCharBlockBackward;
-console.log("guess: ", guess);
-console.log("multiCharBlockBackward: ", multiCharBlockBackward);
     if (guess == multiCharBlockBackward) return true;
   };
   return false;

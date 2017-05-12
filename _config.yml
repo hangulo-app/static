@@ -5,7 +5,6 @@
 # in the templates via {{ site.myvariable }}.
 title: Hangulo
 email: joseph@hangulo.org
-description: > # Hangulo is a Hangul reading tool/game for beginners looking to practice their reading through syllable-by-syllable pronunciation.
 
 # Build settings
 markdown: kramdown
