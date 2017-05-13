@@ -63,27 +63,32 @@ var Demo = {
     var last = event.results.length - 1;
     var result = event.results[last][0].transcript;
     var block = Demo.currentBlock;
+    var firstCharOfResult = result.charAt(0);
+    var lastCharOfResult = result.charAt(result.length-1);
 
-console.log("charAt(0) = ",result.charAt(0));
-console.log("charAt(result.length-1) = ", result.charAt(result.length-1));
+console.log("charAt(0) = ",firstCharOfResult);
+console.log("charAt(result.length-1) = ", lastCharOfResult);
+console.log("result = ", result);
 
     if (result.length-1 > 0 && result.length > block.length) {
-      if (block == result.charAt(0)) {
-
-// IMPLEMENT isMultiMatchForward
-
-        alert(result);
+      if (block == firstCharOfResult) {
+        if (isMultiMatchForward(block, result)) {
+          var nextIndex = blocks.indexOf(lastCharOfResult) + 1;
+          // render each block guess
+          for (var i=Demo.blockIndex;i<nextIndex;i++) {
+            $('#block-'+i+'-guess').html(blocks[i]);
+          };
+          Demo.blockIndex = nextIndex;
+          Demo.currentBlock = blocks[Demo.blockIndex];
+        };
       }
-      else if (block == result.charAt(result.length-1)) {
-
+      else if (block == lastCharOfResult) {
         if (isMultiMatchBackward(block, result)) {
-
-          $('#block-'+Demo.blockIndex+'-guess').html(result.charAt(result.length-1));
-
+          $('#block-'+Demo.blockIndex+'-guess').html(lastCharOfResult);
           Demo.blockIndex++;
           Demo.currentBlock = blocks[Demo.blockIndex];
         }
-      };
+      }
     }
     else {
       $('#block-'+Demo.blockIndex+'-guess').html(result);
@@ -91,11 +96,9 @@ console.log("charAt(result.length-1) = ", result.charAt(result.length-1));
       if (isMatch(Demo.currentBlock, result)) {
         Demo.blockIndex++;
         Demo.currentBlock = blocks[Demo.blockIndex];
-
-        if(!Demo.currentBlock) endGame();
       }
     };
-
+    if(!Demo.currentBlock) endGame();
   }
 /* END EVENT HANDLERS */
 
@@ -135,11 +138,14 @@ function isMultiMatchForward(block, guess) {
   var refIndex = blocks.indexOf(block);
   var multiCharBlockForward = '';
 
-  for (var i=refIndex;i<blocks.length;i++){ //forward
-    if (guess == multiCharBlockForward) return true;
+console.log('guess in isMultiMatchForward: ', guess);
 
-    multiCharBlock += blocks[i];
+  for (var i=refIndex;i<blocks.length;i++){ //forward
+    multiCharBlockForward += blocks[i];
+    if (guess == multiCharBlockForward) return true;
   };
+
+console.log("multiCharBlockForward: ", multiCharBlockForward);
   return false;
 };
 

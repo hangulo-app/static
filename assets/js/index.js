@@ -1,12 +1,18 @@
-$(document).ready(function(){
-  UIkit.modal.dialog("<button class='uk-modal-close-default' type='button' uk-close></button><div class='uk-modal-header'><h2 class='uk-modal-title'>Welcome to Hangulo!</h2><div><p>Hangulo is currently under development and not yet functional. Feel free to try the demo on this page, nonetheless.</p><p>Any questions can be mailed to <span class='uk-text-primary'>joseph@hangulo.org</span></p>", {center:true});
-});
-
-
 $('#playButton').on('click', function(e) {
   e.preventDefault();
 
-  if (!Demo.inProgress) startGame();
+  $playIcon = $('#playIcon');
+
+  if (!Demo.inProgress) {
+    startGame();
+    $playIcon.attr('uk-icon', 'icon: refresh');
+    $playIcon.html('Restart ');
+  }
+  else if (Demo.inProgress) {
+    endGame();
+    $playIcon.attr('uk-icon', 'icon: play');
+    $playIcon.html('Start ');
+  };
 });
 
 function setCurrentBlock(blockId) {
