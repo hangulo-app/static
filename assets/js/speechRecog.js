@@ -25,7 +25,7 @@ var Demo = {
 document.getElementById('user-input').addEventListener('change', function(e) {
   e.preventDefault();
   blocks = document.getElementById('user-input').value.match(/\b(\w+)\b/g);
-
+  console.log(blocks);
   var html = "";
   for (var i = 0; i < blocks.length; i++) {
     html += "<li id='block-" + i + "'><h3>" + blocks[i] + "</h3><h3 id='block-"+i+"-guess'></h3></li>"
