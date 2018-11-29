@@ -23,9 +23,8 @@ var Demo = {
 */
 
 document.getElementById('user-input').addEventListener('change', function(e) {
-  e.preventDefault();
-  console.log("hello");
-  blocks = document.getElementById('user-input').value.match(/\b(\w+)\b/g);
+
+  blocks = document.getElementById('user-input').value.split(" ");
   console.log(blocks);
   var html = "";
   for (var i = 0; i < blocks.length; i++) {
