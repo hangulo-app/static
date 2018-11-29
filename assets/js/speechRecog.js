@@ -24,6 +24,7 @@ var Demo = {
 
 document.getElementById('user-input').addEventListener('change', function(e) {
   e.preventDefault();
+  console.log("hello");
   blocks = document.getElementById('user-input').value.match(/\b(\w+)\b/g);
   console.log(blocks);
   var html = "";
