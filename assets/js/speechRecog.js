@@ -24,7 +24,7 @@ var Demo = {
 
 document.getElementById('user-input').addEventListener('change', function(e) {
 
-  blocks = document.getElementById('user-input').value.split(" ");
+  blocks = document.getElementById('user-input').value.split(" ").split("");
   console.log(blocks);
   var html = "";
   for (var i = 0; i < blocks.length; i++) {
