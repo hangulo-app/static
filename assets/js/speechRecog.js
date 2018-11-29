@@ -22,6 +22,17 @@ var Demo = {
 ****
 */
 
+document.getElementById('user-input').addEventListener('change', function(e) {
+  e.preventDefault();
+  blocks = document.getElementById('user-input').value.match(/\b(\w+)\b/g);
+
+  var html = "";
+  for (var i = 0; i < blocks.length; i++) {
+    html += "<li id='block-" + i + "'><h3>" + blocks[i] + "</h3><h3 id='block-"+i+"-guess'></h3></li>"
+  }
+  document.getElementById('word-list').innerHTML = html;
+});
+
 /*
 **** Recognition Config
 */
@@ -161,12 +172,3 @@ function isMultiMatchBackward(block, guess) {
   };
   return false;
 };
-
-document.getElementById('user-input').addEventListener('change', function(e) {
-  var chars = document.getElementById('user-input').value.match(/\b(\w+)\b/g);
-  var html = "";
-  for (var i = 0; i < chars.length; i++) {
-    html += "<li id='block-" + i + "'><h3>" + chars[i] + "</h3><h3 id='block-"+i+"-guess'></h3></li>"
-  }
-  document.getElementById('word-list').innerHTML = html;
-});
