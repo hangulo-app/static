@@ -109,6 +109,8 @@ function startGame() {
   Demo.blockIndex = 0;
   Demo.currentBlock = blocks[Demo.blockIndex];
 
+  blocks = document.childNodes.map(function(b) { return b.firstChild.textContent });
+
   recognition.start();
 };
 
@@ -159,3 +161,12 @@ function isMultiMatchBackward(block, guess) {
   };
   return false;
 };
+
+document.getElementById('user-input').addEventListener('change', function(e) {
+  var chars = document.getElementById('user-input').value.match(/\b(\w+)\b/g);
+  var html = "";
+  for (var i = 0; i < chars.length; i++) {
+    html += "<li id='block-" + i + "'><h3>" + chars[i] + "</h3><h3 id='block-"+i+"-guess'></h3></li>"
+  }
+  document.getElementById('word-list').innerHTML = html;
+});
