@@ -120,8 +120,6 @@ function startGame() {
   Demo.blockIndex = 0;
   Demo.currentBlock = blocks[Demo.blockIndex];
 
-  blocks = document.childNodes.map(function(b) { return b.firstChild.textContent });
-
   recognition.start();
 };
 
